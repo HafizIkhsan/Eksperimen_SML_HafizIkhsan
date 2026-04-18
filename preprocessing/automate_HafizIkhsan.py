@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_PATH = BASE_DIR.parent / "loan_approval_raw.csv"
-OUTPUT_PATH = BASE_DIR / "loan_preprocessed.csv"
+OUTPUT_PATH = BASE_DIR / "loan_approval_preprocessed.csv"
 
 
 def preprocessing_data(df: pd.DataFrame):
