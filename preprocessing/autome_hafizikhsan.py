@@ -9,9 +9,10 @@ OUTPUT_PATH = BASE_DIR / "loan_preprocessed.csv"
 
 
 def preprocessing_data(df: pd.DataFrame):
-
+    # Drop kolom yang tidak relevan
     df = df.drop(columns=["name", "points"])
 
+    # Encoding Data
     X = df.drop("loan_approved", axis=1)
     y = df["loan_approved"]
 
@@ -24,7 +25,7 @@ def preprocessing_data(df: pd.DataFrame):
     return df_processed
 
 
-def main() -> None:
+def main():
     df = pd.read_csv(INPUT_PATH)
     df_processed = preprocessing_data(df)
     df_processed.to_csv(OUTPUT_PATH, index=False)
