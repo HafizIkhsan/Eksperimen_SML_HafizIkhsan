@@ -13,16 +13,16 @@ def preprocessing_data(df: pd.DataFrame):
     df = df.drop(columns=["name", "points"])
 
     # Encoding Data
-    X = df.drop("loan_approved", axis=1)
-    y = df["loan_approved"]
+    label_encoder = LabelEncoder()
 
-    le = LabelEncoder()
-    y = le.fit_transform(y)
-
-    X = pd.get_dummies(X, columns=["city"])
-    df_processed = pd.concat([X, pd.Series(y, name="loan_approved")], axis=1)
-
-    return df_processed
+    # List kolom kategorikal yang perlu di-encode
+    categorical_columns = ['city', 'loan_approved']
+    
+    # Encode kolom kategorikal
+    for column in categorical_columns:
+        df[column] = label_encoder.fit_transform(df[column])
+    
+    return df
 
 
 def main():
